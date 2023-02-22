@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Web GIS Rumah Sakit Jakarta</title>
+	<style>
+		#map {
+			height: 500px;
+			width: 100%;
+		}
+	</style>
+</head>
+<body>
+	<h1>Web GIS Rumah Sakit Jakarta</h1>
+	<div id="map"></div>
+
+	<script>
+		var map;
+		var markers = [];
+
+		function initMap() {
+			// Membuat peta dan menampilkan di elemen HTML dengan id "map"
+			map = new google.maps.Map(document.getElementById('map'), {
+				center: {lat: -6.200000, lng: 106.816666},
+				zoom: 12
+			});
+
+			// Menambahkan titik rumah sakit ke peta
+			var rumahSakit = [
+				{nama: 'Rumah Sakit Cipto Mangunkusumo', koordinat: {lat: -6.195347, lng: 106.837920}},
+				{nama: 'Rumah Sakit Jakarta', koordinat: {lat: -6.201012, lng: 106.785423}},
+				{nama: 'Rumah Sakit Siloam Kebon Jeruk', koordinat: {lat: -6.191837, lng: 106.766899}},
+				{nama: 'Rumah Sakit Pondok Indah', koordinat: {lat: -6.267131, lng: 106.798013}},
+				{nama: 'Rumah Sakit MMC', koordinat: {lat: -6.214235, lng: 106.819734}},
+				{nama: 'Rumah Sakit Omni Pulomas', koordinat: {lat: -6.189197, lng: 106.880201}}
+			];
+
+			for (var i = 0; i < rumahSakit.length; i++) {
+				var marker = new google.maps.Marker({
+					position: rumahSakit[i].koordinat,
+					map: map,
+					title: rumahSakit[i].nama
+				});
+				markers.push(marker);
+			}
+		}
+	</script>
+
+	<!-- Mengambil Google Maps API -->
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKX8ZxHXBXxLVwl0tTa_K8PRnjOwPI4Mo&callback=initMap" async defer></script>
+</body>
+</html>
